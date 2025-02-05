@@ -1,5 +1,5 @@
 // console log di prova
-console.log('i limoni signoraaa!!');
+console.log('app.js si avvia correttamente!');
 
 // importazione express
 const express = require('express')
@@ -7,15 +7,20 @@ const express = require('express')
 // inizializzazione express
 const app = express()
 
+// Importazione routers/posts.js
+const postsRouter = require('./routers/posts');
 
-//   app.use('/posts',postsRouter)
 
+//registrazione path delle rotte e istanza router
+app.use('/posts', postsRouter);
 
 // impostazione porta
 const port = 3000
 
   // configurazione asset statico
   app.use(express.static('public'));
+
+  
 
 // impostazione rotta principale
 app.get('/', (req, res) => {
@@ -28,12 +33,11 @@ app.get("/bacheca", (req, res) => {
   });
 
 
+
 // avvio server mettendolo in ascolto sulla porta indicata
 app.listen(port, () => {
-console.log(`Example app listening on port ${port}`)
+console.log(`Server in ascolto sulla porta: ${port}`)
 })
-
-
 
 // array con lista dolci
 const dolci = [
